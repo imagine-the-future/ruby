@@ -2,6 +2,8 @@ name: bundled_gems
 
 on:
   push:
+    branches:
+      - rubyhackchallenge
     paths:
       - '.github/workflows/bundled_gems.yml'
       - 'gems/bundled_gems'

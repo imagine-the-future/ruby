@@ -2,6 +2,8 @@ name: "Code scanning - action"
 
 on:
   push:
+    branches:
+      - rubyhackchallenge
     paths-ignore:
       - 'doc/**'
       - '**.md'

@@ -2,6 +2,8 @@ name: YJIT x86 assembler tests
 
 on:
   push:
+    branches:
+      - rubyhackchallenge
     paths-ignore:
       - 'doc/**'
       - '**.md'

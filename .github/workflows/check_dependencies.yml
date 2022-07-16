@@ -1,6 +1,8 @@
 name: Check Dependencies
 on:
   push:
+    branches:
+      - rubyhackchallenge
     paths-ignore:
       - 'doc/**'
       - '**.md'

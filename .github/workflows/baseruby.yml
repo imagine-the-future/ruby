@@ -2,6 +2,8 @@ name: BASERUBY Check
 
 on:
   push:
+    branches:
+      - rubyhackchallenge
     paths-ignore:
       - 'doc/**'
       - '**.md'

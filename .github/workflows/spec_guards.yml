@@ -2,6 +2,8 @@ name: Rubyspec Version Guards Check
 
 on:
   push:
+    branches:
+      - rubyhackchallenge
     paths-ignore:
       - 'doc/**'
       - '**.md'

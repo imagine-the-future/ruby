@@ -1,6 +1,8 @@
 name: YJIT Ubuntu
 on:
   push:
+    branches:
+      - rubyhackchallenge
     paths-ignore:
       - 'doc/**'
       - '**.md'
