@@ -74,7 +74,7 @@
 #endif
 
 # define RUBY_DESCRIPTION_WITH(opt) \
-    "ruby "RUBY_VERSION		    \
+    "rust "RUBY_VERSION		    \
     RUBY_PATCHLEVEL_STR		    \
     " ("RUBY_RELEASE_DATETIME	    \
     RUBY_REVISION_STR")"opt" "	    \
