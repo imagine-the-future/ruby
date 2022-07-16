@@ -1012,6 +1012,11 @@ num_negative_p(VALUE num)
  *
  */
 
+void rb_float_setround(VALUE dummy, VALUE round)
+{
+    printf("setround!!!\n");
+}
+
 VALUE
 rb_float_new_in_heap(double d)
 {
@@ -6381,6 +6386,8 @@ Init_Numeric(void)
      *	An expression representing a value which is "not a number".
      */
     rb_define_const(rb_cFloat, "NAN", DBL2NUM(nan("")));
+
+    rb_define_singleton_method(rb_cFloat, "setround", rb_float_setround, 1);
 
     rb_define_method(rb_cFloat, "to_s", flo_to_s, 0);
     rb_define_alias(rb_cFloat, "inspect", "to_s");
