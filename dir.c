@@ -3245,6 +3245,26 @@ dir_s_home(int argc, VALUE *argv, VALUE obj)
 
 }
 
+static VALUE
+dir_s_xdg_config_home(int argc, VALUE *argv, VALUE obj)
+{
+    //TODO: user
+
+    VALUE result;
+    result = rb_str_new(0, 0);
+
+    char *env_cfg_home = getenv("XDG_CONFIG_HOME");
+    if(env_cfg_home != NULL){
+        rb_str_cat(result, env_cfg_home, strlen(env_cfg_home));
+        return result;
+    }
+
+    result = rb_default_home_dir(result);
+    rb_str_cat(result, "/.config", 8);
+
+    return result;
+}
+
 #if 0
 /*
  * call-seq:
@@ -3384,6 +3404,7 @@ Init_Dir(void)
     rb_define_singleton_method(rb_cDir,"delete", dir_s_rmdir, 1);
     rb_define_singleton_method(rb_cDir,"unlink", dir_s_rmdir, 1);
     rb_define_singleton_method(rb_cDir,"home", dir_s_home, -1);
+    rb_define_singleton_method(rb_cDir,"xdg_config_home", dir_s_xdg_config_home, -1);
 
     rb_define_singleton_method(rb_cDir,"exist?", rb_file_directory_p, 1);
     rb_define_singleton_method(rb_cDir,"exists?", rb_dir_exists_p, 1);

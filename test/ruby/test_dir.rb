@@ -531,6 +531,20 @@ class TestDir < Test::Unit::TestCase
     ENV["LOGDIR"] = env_logdir
   end
 
+  def test_xdg_config
+    env_xdg_config_home = ENV["XDG_CONFIG_HOME"]
+    ENV.delete("XDG_CONFIG_HOME")
+
+    assert_equal(Dir.home + "/.config", Dir.xdg_config_home)
+
+    ENV["XDG_CONFIG_HOME"] = @nodir
+    assert_nothing_raised(ArgumentError) do
+      assert_equal(@nodir, Dir.xdg_config_home)
+    end
+  ensure
+    ENV["XDG_CONFIG_HOME"] = env_xdg_config_home
+  end
+
   def test_symlinks_not_resolved
     Dir.mktmpdir do |dirname|
       Dir.chdir(dirname) do
