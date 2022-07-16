@@ -18,6 +18,7 @@
 
 #ifdef HAVE_FLOAT_H
 #include <float.h>
+#include <fenv.h>
 #endif
 
 #ifdef HAVE_IEEEFP_H
@@ -1014,7 +1015,9 @@ num_negative_p(VALUE num)
 
 void rb_float_setround(VALUE dummy, VALUE round)
 {
-    printf("setround!!!\n");
+    printf("setround(%d)!!!\n", FIX2INT(round));
+    int r = fesetround(round);
+    printf("ret: %d\n", r);
 }
 
 VALUE
@@ -2608,6 +2611,15 @@ flo_to_i(VALUE num)
 
     if (f > 0.0) f = floor(f);
     if (f < 0.0) f = ceil(f);
+
+    return dbl2ival(f);
+}
+
+static VALUE
+flo_to_i_cast(VALUE num)
+{
+    double f = RFLOAT_VALUE(num);
+    f = (int)f;
 
     return dbl2ival(f);
 }
@@ -6414,6 +6426,7 @@ Init_Numeric(void)
 
     rb_define_method(rb_cFloat, "to_i", flo_to_i, 0);
     rb_define_method(rb_cFloat, "to_int", flo_to_i, 0);
+    rb_define_method(rb_cFloat, "to_i_cast", flo_to_i_cast, 0);
     rb_define_method(rb_cFloat, "floor", flo_floor, -1);
     rb_define_method(rb_cFloat, "ceil", flo_ceil, -1);
     rb_define_method(rb_cFloat, "round", flo_round, -1);
