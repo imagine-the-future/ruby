@@ -24,6 +24,11 @@ class TestMath < Test::Unit::TestCase
     assert_equal(int_exp, int_act)
   end
 
+  def test_pi
+    assert_in_delta(Math::PI, 3.14, 0.01)
+    assert_in_delta(Math::TAU, 6.28, 0.01)
+  end
+
   def test_atan2
     check(+0.0, Math.atan2(+0.0, +0.0))
     check(-0.0, Math.atan2(-0.0, +0.0))
