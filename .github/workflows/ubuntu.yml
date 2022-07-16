@@ -1,6 +1,8 @@
 name: Ubuntu
 on:
   push:
+    branches:
+      - rubyhackchallenge
     paths-ignore:
       - 'doc/**'
       - '**.md'
@@ -19,7 +21,7 @@ jobs:
   make:
     strategy:
       matrix:
-        test_task: ["check", "test-bundler-parallel", "test-bundled-gems"]
+        test_task: ["check"]
         os:
           - ubuntu-20.04
 #         - ubuntu-18.04
@@ -122,7 +124,7 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SIMPLER_ALERTS_URL }} # ruby-lang slack: ruby/simpler-alerts-bot
-        if: ${{ failure() && github.event_name == 'push' }}
+        if: false
 
 defaults:
   run:
